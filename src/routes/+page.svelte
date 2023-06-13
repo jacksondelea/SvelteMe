@@ -1,2 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Bio from '../components/Bio.svelte';
+    import Projects from '../components/Projects.svelte';
+    import Logo from '../components/Logo.svelte';
+  </script>
+
+  
+  <div style="width: 600px; text-align: left;">
+    <Logo />
+    <Bio />
+    <Projects />
+  </div>
