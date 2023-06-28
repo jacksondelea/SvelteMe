@@ -40,7 +40,7 @@
     }
 
     .text{
-    max-width: 540px;
+    max-width: 600px;
   }
 
   @media (max-width: 1024px) {  

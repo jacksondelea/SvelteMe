@@ -1,11 +1,24 @@
 <script>
-  let projects = [
-    { title: 'Project 1', format: 'Web App', date: 'June 2023', info1: 'Project 1 info...', info2: 'Project 1 info 2' },
-    { title: 'Project 2', format: 'Mobile App', date: 'May 2023', info1: 'Project 2 info...', info2: 'Project 2 info 2' },
-    { title: 'Project 3', format: 'Web App', date: 'April 2023', info1: 'Project 3 info...', info2: 'Project 3 info 2' }
-  ];
+  import { onMount } from 'svelte';
+  import { fade, slide } from 'svelte/transition';
+  
+  /**
+     * @type {any[]}
+     */
+  let projects = [];
+  /**
+     * @type {null}
+     */
   let selectedProject = null;
   
+  onMount(async () => {
+    // dynamically import your JSON file
+    projects = (await import('../data/projects.json')).default;
+  });
+
+  /**
+     * @param {null} project
+     */
   function selectProject(project) {
     selectedProject = selectedProject === project ? null : project;
   }
@@ -13,24 +26,26 @@
 
 {#each projects as project (project.title)}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div class="project-item" on:click={() => selectProject(project)}>
+  <div class="project-item" on:click={() => selectProject(project)} transition:fade={{ duration: 100 }}>
     <div class="project-content">
-      <div class="project-text">
+      <div class="project-text" class:selected={selectedProject === project}>
         <span class="title">{project.title}</span>
         <span class="format">{project.format}</span>
+        <span class="setting">{project.setting}</span>
         <span class="date">{project.date}</span>
       </div>
       {#if selectedProject === project}
-        <div class="project-info">
+        <div class="project-info" transition:slide={{ duration: 100 }}>
           <p>{project.info1}</p>
-          <p>{project.info2}</p>
+          <div class="images">
+            <img src={project.image}/>
+          </div>
+          <p>{project.info2}</p>          
         </div>
       {/if}
     </div>
   </div>
 {/each}
-
-
 
 <style>
 .project-item {
@@ -61,6 +76,11 @@
   text-align: left;
 }
 
+.setting {
+  flex: 1;
+  text-align: center;
+}
+
 .date {
   flex: 1;
   text-align: right;
@@ -78,6 +98,16 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.images {
+  display: flex;
+}
+
+/* New style for selected project text */
+.project-text.selected {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 </style>
