@@ -4,7 +4,6 @@
 <div class="content">
     <div>E-Mail</div>
     <a>CV</a>
-    <a>Commissions</a>
     <a>Github</a>
     <a>LinkedIn</a>
     <a href="https://soundcloud.com/jacksondelay">Soundcloud</a>

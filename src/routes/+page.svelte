@@ -34,9 +34,9 @@
       margin-right: 0.5rem;
     }
     .content {
-      max-width: 880px;
+      max-width: 420px;
       margin: 0 auto;
-      margin-top: 1.75rem;
+      margin-top: 20vh;
     }
 
     .text{
@@ -45,7 +45,7 @@
 
   @media (max-width: 1024px) {  
     .content {
-      margin-top: 0.5rem; 
+      margin-top: 2.5rem; 
     }
   }
 
