@@ -1,8 +1,12 @@
 <script>
+        function sendEmail() {
+        window.location.href = "mailto:jackson_delea@alumni.brown.edu";
+    }
+
 </script>
 
 <div class="content">
-    <a href="jackson_delea@alumni.brown.edu">E-Mail</a>
+    <span class="email" onclick={sendEmail}>E-Mail</span>
     <a href="https://docs.google.com/document/d/1qPTrAEfb4tQ7i7hwuZnJMGckzezlfh7_CdmYR1pE3GQ/edit?usp=sharing">CV</a>
     <a href="https://www.linkedin.com/in/jackson-delea/">LinkedIn</a>
     <a href="https://soundcloud.com/jacksondelay">Soundcloud</a>
