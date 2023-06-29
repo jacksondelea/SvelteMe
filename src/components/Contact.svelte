@@ -2,12 +2,11 @@
 </script>
 
 <div class="content">
-    <div class="email">E-Mail</div>
-    <a>CV</a>
-    <a>Github</a>
-    <a>LinkedIn</a>
+    <a href="jackson_delea@alumni.brown.edu">E-Mail</a>
+    <a href="https://docs.google.com/document/d/1qPTrAEfb4tQ7i7hwuZnJMGckzezlfh7_CdmYR1pE3GQ/edit?usp=sharing">CV</a>
+    <a href="https://www.linkedin.com/in/jackson-delea/">LinkedIn</a>
     <a href="https://soundcloud.com/jacksondelay">Soundcloud</a>
-    <a href="https://www.are.na/jackson-delea">Journal</a>
+    <a href="https://www.are.na/jackson-delea">Are.na</a>
 </div>
 
 <style>
