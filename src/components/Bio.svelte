@@ -6,8 +6,8 @@
     expanded = !expanded;
   }
 
-  let shortbio = 'Researcher, writer and designer based in New York City.';
-  let extrabio= "I got my B.A. from Brown University, where I studied a mix of literature, computer science, architecture, theory, and design. I'm interested in how technology, politics and culture interact to produce new social conditions. Right now, I'm particularly interested in distributed networks, open source software, and durable interface design. I'm working on developing a critical design practice that connects my aesthetic sensibilities, political values, and software engineering skills. You can learn more about me through the links and projects below.";
+  let shortbio = 'Technologist, writer and designer based in New York City.';
+  let extrabio= "I got my B.A. from Brown University, where I studied a mix of literature, computer science, architecture, theory, and design. I'm interested in how technology, politics and culture interact to produce new social conditions. Right now, I'm particularly interested in distributed networks, open source software, and durable interface design. I'm working on developing a critical design practice that connects my aesthetic sensibilities with my political values and software engineering skills. You can learn more about me through the links and projects below.";
   let currentbio = "I'm";
 
   import { onMount } from 'svelte';
