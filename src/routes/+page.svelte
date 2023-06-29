@@ -12,7 +12,6 @@
   <div class="infoindent">
     <div class="topbar">
       <NameLogo />
-      <ThemeToggle />
     </div>
     <div class="text">
       <Bio />

@@ -13,16 +13,26 @@
   import { onMount } from 'svelte';
 
   let color =  "#FFFFF";
+  let isBlack = false;
 
   onMount(() => {
     const changeColor = (event) => {
       const x = event.clientX;
       const y = event.clientY;
-      color = `rgb(${x % 255}, ${y % 255}, ${(x + y) % 255})`;
+      if (!isBlack) {
+        color = `rgb(${x % 255}, ${y % 255}, ${(x + y) % 255})`;
+      }
     }
     
     window.addEventListener('mousemove', changeColor);
   });
+
+  function toggleWorkColor() {
+    isBlack = !isBlack;
+    if (isBlack) {
+      color = "#FFFF";
+    }
+  }
 </script>
 
 <div class="content">
@@ -31,13 +41,15 @@
     {#if expanded}
       <span>{extrabio}</span>
     {/if}
-    <a on:click|preventDefault={toggleBio} style="color: green; cursor: pointer;">[{expanded ? 'less' : 'more'}]</a>
+    <a on:click|preventDefault={toggleBio} style="color: #0a58d0; cursor: pointer;">[{expanded ? 'less' : 'more'}]</a>
   </p>
   <p>{currentbio} 
-    <span style="color: {color}; cursor: text;" >open to work!</span>
+    <span style="color: {color}; cursor: pointer;" on:click={toggleWorkColor}>open to work!</span>
   </p>
 </div>
 
 <style>
-
+.content{
+  border-top: 0.5px solid #121212;
+}
 </style>

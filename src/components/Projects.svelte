@@ -1,50 +1,71 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from 'svelte';
   import { fade, slide } from 'svelte/transition';
   
   /**
-     * @type {any[]}
+     * @type {{ title: string; format: string; setting: string; date: string; info1: string; image: string; info2: string; }[]}
      */
   let projects = [];
   /**
-     * @type {null}
+     * @type {string | null}
      */
+  let selectedCategory = null;
   let selectedProject = null;
   
   onMount(async () => {
-    // dynamically import your JSON file
     projects = (await import('../data/projects.json')).default;
+
+    // group projects by format
+    let groupedProjects = {};
+    for (let project of projects) {
+      if (!groupedProjects[project.format]) {
+        groupedProjects[project.format] = [];
+      }
+      groupedProjects[project.format].push(project);
+    }
+    projects = groupedProjects;
   });
 
-  /**
-     * @param {null} project
-     */
+  function selectCategory(category) {
+    selectedCategory = selectedCategory === category ? null : category;
+  }
+
   function selectProject(project) {
     selectedProject = selectedProject === project ? null : project;
   }
 </script>
 
-{#each projects as project (project.title)}
+{#each Object.keys(projects) as category (category)}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
-  <div class="project-item" on:click={() => selectProject(project)} transition:fade={{ duration: 100 }}>
-    <div class="project-content">
-      <div class="project-text" class:selected={selectedProject === project}>
-        <span class="title">{project.title}</span>
-        <span class="format">{project.format}</span>
-        <span class="setting">{project.setting}</span>
-        <span class="date">{project.date}</span>
-      </div>
-      {#if selectedProject === project}
-        <div class="project-info" transition:slide={{ duration: 100 }}>
-          <p>{project.info1}</p>
-          <div class="images">
-            <img src={project.image}/>
-          </div>
-          <p>{project.info2}</p>          
-        </div>
-      {/if}
-    </div>
+  <div class="category" on:click={() => selectCategory(category)}>
+    {selectedCategory === category ? '[-]' : '[+]'} {category}
   </div>
+  {#if selectedCategory === category}
+    {#each projects[category] as project (project.title)}
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <div class="project-item" on:click={() => selectProject(project)}>
+        <div class="project-content">
+          <div class="project-text" class:selected={selectedProject === project}>
+            <span class="title">- {project.title}</span>
+            <span class="date">{project.date}</span>
+          </div>
+          {#if selectedProject === project}
+            <div class="project-info">
+              <p>{project.info1}</p>
+              <div class="images">
+                <!-- svelte-ignore a11y-missing-attribute -->
+                <img src={project.image}/>
+              </div>
+              <p>{project.info2}</p>
+              <a class="link" href={project.link.url}>{project.link.text}</a>          
+            </div>
+          {/if}
+        </div>
+      </div>
+    {/each}
+  {/if}
 {/each}
 
 <style>
@@ -52,7 +73,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  border-top: 0.5px solid;
+
   padding: 0.5rem;
 }
 
@@ -71,14 +92,10 @@
   flex: 2;
 }
 
-.format {
-  flex: 1;
-  text-align: left;
-}
 
-.setting {
-  flex: 1;
-  text-align: center;
+.link{
+  color: #FFFF;
+  padding-bottom: 0.5rem;
 }
 
 .date {
@@ -86,11 +103,12 @@
   text-align: right;
 }
 
-.project-item:hover, .top-project:hover, .project-item:target {
-  transition: background 0.5s ease;
-  background: darkgreen;
-  color: #FFFF;
+.project-item:hover, .top-project:hover, .category:hover, .project-item:target {
   cursor: pointer;
+}
+
+.project-item:hover .title, .project-item:hover .date {
+  text-decoration: underline;
 }
 
 .project-info {
@@ -98,10 +116,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border-bottom: 0.5px dotted;
 }
 
 .images {
   display: flex;
+}
+
+.images img {
+  max-width: 100%;
 }
 
 /* New style for selected project text */
@@ -110,4 +133,10 @@
   font-weight: bold;
 }
 
+/* add your own styles for the category div */
+.category {
+  /* styles here */
+  padding: 0.5rem;
+  cursor: pointer;
+}
 </style>

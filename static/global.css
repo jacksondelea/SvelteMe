@@ -1,6 +1,6 @@
 :root {
-  --text-color: rgb(68, 68, 68);
-  --bg-color: #ffffff;
+  --text-color: #FFFF;
+  --bg-color: #121212;
 }
 
 body[data-theme='dark'] {
@@ -11,9 +11,10 @@ body[data-theme='dark'] {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Inter", monospace;
-  font-size: .8rem;
-  line-height: 1.25rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.16rem;
+  text-rendering: optimizeLegibility;
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: color 0.3s ease, background-color 0.3s ease;

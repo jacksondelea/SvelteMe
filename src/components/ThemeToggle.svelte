@@ -23,7 +23,7 @@
 
 <style>
   :root {
-    --bg-light: #ffffff; /* replace with your light theme color */
+    --bg-light: #bfc0c2; /* replace with your light theme color */
     --bg-dark: #121212; /* replace with your dark theme color */
   }
 

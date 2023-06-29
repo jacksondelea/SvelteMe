@@ -15,7 +15,7 @@
     font-size: 1.25rem;
     font-weight: 600;
     font-family: 'Michroma', sans-serif;
-    padding-bottom: 0.5rem;
     cursor: default;
+    padding-bottom: 0.75rem;
   }
 </style>
